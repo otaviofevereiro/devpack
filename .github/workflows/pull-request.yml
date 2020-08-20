@@ -1,8 +1,7 @@
-name: Publish
+name: Pull Request
 
 on:
-  push:
-    branches: [ master ]
+  pull_request:
 
 jobs:
   build:
@@ -21,8 +20,3 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Pack Nuget
-      run: dotnet pack DevPack.Extensions/DevPack.Extensions.csproj --output nuget-packages --configuration Release
-    - name: Publish Nuget
-      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
-
