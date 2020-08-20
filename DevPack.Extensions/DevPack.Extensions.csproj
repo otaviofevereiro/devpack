@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<PackageId>DevPack.Extensions</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Authors>Otavio Fevereiro</Authors>
 		<Company>otavio.fevereiro</Company>
 		<Title>DevPack Extension</Title>
@@ -14,5 +13,4 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryBranch>master</RepositoryBranch>
 	</PropertyGroup>
-
 </Project>
