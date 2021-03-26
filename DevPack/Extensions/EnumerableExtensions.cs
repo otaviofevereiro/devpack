@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-namespace DevPack.Extensions
+namespace System.Collections.Generic
 {
     public static class EnumerableExtensions
     {
