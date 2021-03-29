@@ -55,9 +55,9 @@ namespace DevPack.Tests.DateTimeProvider
             var nowResult = dateTimeProvider.Now;
 
             //Assert
-            var now = DateTime.Now;
+            var now = DateTime.UtcNow;
 
-            Assert.Equal(nowResult.ToString("dd/MM/yyyy hh:mm"), now.AddHours(13).ToString("dd/MM/yyyy hh:mm"));
+            Assert.Equal(nowResult.ToString("dd/MM/yyyy hh:mm"), now.AddHours(10).ToString("dd/MM/yyyy hh:mm"));
         }
 
         private IServiceProvider GetServiceProvider(TimeSpan offset = default)
