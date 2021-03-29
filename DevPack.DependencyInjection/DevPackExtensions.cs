@@ -10,7 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             configuration?.Invoke(_configuration);
 
-            services.AddSingleton<IDateTimeProvider>(sp=> new DateTimeProvider(_configuration.DateTimeOffset));
+            services.AddSingleton<IDateTimeProvider>(sp => new DateTimeProvider(_configuration.DateTimeOffset));
 
             return services;
         }
