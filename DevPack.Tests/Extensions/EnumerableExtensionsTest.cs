@@ -4,7 +4,7 @@ using Xunit;
 
 namespace DevPack.Extensions.Tests
 {
-    public class EnumerableExtensions
+    public class EnumerableExtensionsTest
     {
         public readonly IReadOnlyCollection<char> alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
