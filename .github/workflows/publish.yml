@@ -28,12 +28,8 @@ jobs:
     - name: Publish
       run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{ env.VERSION }}
 
-    - name: Zip Release
-      uses: thedoctor0/zip-release@master
-      with:
-        filename: 'release.zip'
-        path : release
-        type: zip
+    - name: Zip Folder
+      run: zip -r DevPack_${{ env.VERSION }}.zip release
 
     - name: Create Release
       id: create_release
@@ -53,8 +49,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./release.zip
-        asset_name: release.zip
+        asset_path: ./DevPack_${{ env.VERSION }}.zip
+        asset_name: DevPack_${{ env.VERSION }}.zip
         asset_content_type: application/zip
 
     - name: Pack Nuget
