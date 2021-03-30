@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore /p:Version 1.0.${{ github.run_id }}
+      run: dotnet build --configuration Release --no-restore --version-suffix ${{ github.run_id }}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack Nuget
