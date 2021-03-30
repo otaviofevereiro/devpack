@@ -4,9 +4,8 @@ on:
   push:
     branches: [ master ]
 
-variables:
-  - name: version
-    value: "1.0.1"
+env: 
+  VERSION: "1.0.1"
 
 jobs:
   build:
@@ -27,7 +26,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     
     - name: Publish
-      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore --version $(version)
+      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore --version ${{ env.VERSION }}
 
     - name: Zip Release
       uses: thedoctor0/zip-release@master
@@ -42,8 +41,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $(version)
-        release_name: Release $(version)
+        tag_name: ${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
         body: |
           Added DateTimeProvider
         draft: false
