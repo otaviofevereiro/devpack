@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("DevPack.DependencyInjection")]
+[assembly: InternalsVisibleTo("DevPack.Configuration")]

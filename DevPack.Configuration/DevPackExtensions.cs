@@ -1,12 +1,13 @@
 ﻿using System;
+using DevPack;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class DevPackExtensions
     {
-        public static IServiceCollection AddDevPack(this IServiceCollection services, Action<Configuration> configuration = null)
+        public static IServiceCollection AddDevPack(this IServiceCollection services, Action<DevPackConfiguration> configuration = null)
         {
-            var _configuration = new Configuration();
+            var _configuration = new DevPackConfiguration();
 
             configuration?.Invoke(_configuration);
 

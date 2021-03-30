@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevPack.DependencyInjection\DevPack.DependencyInjection.csproj" />
     <ProjectReference Include="..\DevPack\DevPack.csproj" />
   </ItemGroup>
 

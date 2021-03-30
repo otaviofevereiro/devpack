@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace DevPack
 {
-    public class Configuration
+    public class DevPackConfiguration
     {
         public TimeSpan DateTimeOffset { get; private set; }
 
-        public Configuration WithDateTimeOffSet(TimeSpan offset)
+        public DevPackConfiguration WithDateTimeOffSet(TimeSpan offset)
         {
             DateTimeOffset = offset;
 

@@ -22,7 +22,7 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack Nuget
-      run: dotnet pack DevPack.Extensions/DevPack.Extensions.csproj --output nuget-packages --configuration Release
+      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release
     - name: Publish Nuget
       run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
