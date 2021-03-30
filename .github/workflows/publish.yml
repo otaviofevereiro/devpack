@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
 
+variables:
+  - name: version
+    value: "1.0.1"
+
 jobs:
   build:
 
@@ -15,20 +19,22 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+
     - name: Install dependencies
       run: dotnet restore
-    
-    - name: Build
-      run: dotnet build --configuration Release --no-restore --version-suffix ${{ github.run_id }}
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     
-    - name: Pack Nuget
-      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release
-    
-    - name: Publish Nuget
-      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+    - name: Publish
+      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore --version $(version)
+
+    - name: Zip Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'release.zip'
+        path : release
+        type: zip
 
     - name: Create Release
       id: create_release
@@ -37,9 +43,24 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        release_name: Release $(version)
         body: |
           Added DateTimeProvider
         draft: false
         prerelease: false
+
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./release.zip
+        asset_name: release.zip
+        asset_content_type: application/zip
+
+    - name: Pack Nuget
+      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore
+    
+    - name: Publish Nuget
+      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
