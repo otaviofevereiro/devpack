@@ -28,8 +28,11 @@ jobs:
     - name: Publish
       run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{ env.VERSION }}
 
+    - name: Pack Nuget
+      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore -p:version=${{ env.VERSION }}
+
     - name: Zip Folder
-      run: cd release ; zip -r DevPack_${{env.VERSION}}.zip . ; cd -
+      run: cd release ; zip -r DevPack.${{env.VERSION}}.zip . ; cd -
 
     - name: Create Release
       id: create_release
@@ -42,17 +45,25 @@ jobs:
         draft: false
         prerelease: false
 
-    - uses: actions/upload-release-asset@v1.0.1
+    - name: Update Release with Artifacts
+      uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./release/DevPack_${{env.VERSION}}.zip
-        asset_name: DevPack_${{env.VERSION}}.zip
+        asset_path: ./release/DevPack.${{env.VERSION}}.zip
+        asset_name: DevPack.${{env.VERSION}}.zip
         asset_content_type: application/zip
 
-    - name: Pack Nuget
-      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore
+    - name: Update Release with Nuget Packages
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./nuget-packages/DevPack.${{env.VERSION}}.nupkg
+        asset_name: DevPack.${{env.VERSION}}.nupkg
+        asset_content_type: application/zip
     
     - name: Publish Nuget
       run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
