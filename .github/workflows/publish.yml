@@ -7,7 +7,7 @@ on:
 env: 
   VERSION: "1.0.3"
   VERSION_FOLDER: "DevPack_${{ env.VERSION }}"
-  VERSION_ZIP: "${{VERSION_FOLDER}}.zip"
+  VERSION_ZIP: "${{env.VERSION_FOLDER}}.zip"
 
 jobs:
   build:
@@ -51,8 +51,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{VERSION_ZIP}}
-        asset_name: ${{VERSION_ZIP}}
+        asset_path: ./${{env.VERSION_ZIP}}
+        asset_name: ${{env.VERSION_ZIP}}
         asset_content_type: application/zip
 
     - name: Pack Nuget
