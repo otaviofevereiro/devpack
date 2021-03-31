@@ -5,7 +5,6 @@
 		<PackageId>DevPack</PackageId>
 		<Authors>Otavio Fevereiro</Authors>
 		<Company>otavio.fevereiro</Company>
-		<VersionPrefix>1.0.1</VersionPrefix>
 		<Title>DevPack</Title>
 		<PackageDescription>
 			It contains common things to improve the productivity
