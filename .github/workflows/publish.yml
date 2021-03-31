@@ -29,7 +29,7 @@ jobs:
       run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{ env.VERSION }}
 
     - name: Zip Folder
-      run: cd release ; zip -r DevPack_${{env.VERSION}}.zip ./* ; cd -
+      run: cd release ; zip -r DevPack_${{env.VERSION}}.zip . ; cd -
 
     - name: Create Release
       id: create_release
