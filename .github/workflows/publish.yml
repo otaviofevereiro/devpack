@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 env: 
-  VERSION: "1.0.6"
+  VERSION: "1.0.7"
 
 jobs:
   build:
@@ -49,7 +49,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./DevPack_${{env.VERSION}}.zip
+        asset_path: ./release/DevPack_${{env.VERSION}}.zip
         asset_name: DevPack_${{env.VERSION}}.zip
         asset_content_type: application/zip
 
