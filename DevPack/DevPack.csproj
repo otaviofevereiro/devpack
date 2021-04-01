@@ -12,6 +12,7 @@
 		<RepositoryUrl>https://github.com/otaviofevereiro/devpack</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryBranch>master</RepositoryBranch>
+		<RootNamespace>System</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
