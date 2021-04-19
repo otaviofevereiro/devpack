@@ -38,13 +38,13 @@ jobs:
         version: ${{ steps.previoustag.outputs.tag }}
     
     - name: Publish
-      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{env.VERSION}}.${{steps.semvers.outputs.patch}}
+      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Pack Nuget
-      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore -p:version=${{env.VERSION}}.${{steps.semvers.outputs.patch}}
+      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Zip Folder
-      run: cd release ; zip -r DevPack.${{env.VERSION}}.${{steps.semvers.outputs.patch}}.zip . ; cd -
+      run: cd release ; zip -r DevPack.${{steps.semvers.outputs.patch}}.zip . ; cd -
 
     - name: Create Release
       id: create_release
@@ -52,8 +52,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{env.VERSION}}.${{steps.semvers.outputs.patch}}
-        release_name: Release ${{env.VERSION}}.${{steps.semvers.outputs.patch}}
+        tag_name: ${{steps.semvers.outputs.patch}}
+        release_name: Release ${{steps.semvers.outputs.patch}}
         draft: false
         prerelease: false
 
@@ -63,8 +63,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./release/DevPack.${{env.VERSION}}.${{steps.semvers.outputs.patch}}.zip
-        asset_name: DevPack.${{env.VERSION}}.${{steps.semvers.outputs.patch}}.zip
+        asset_path: ./release/DevPack.${{steps.semvers.outputs.patch}}.zip
+        asset_name: DevPack.${{steps.semvers.outputs.patch}}.zip
         asset_content_type: application/zip
 
     - name: Update Release with Nuget Packages
@@ -73,8 +73,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./nuget-packages/DevPack.${{env.VERSION}}.${{steps.semvers.outputs.patch}}.nupkg
-        asset_name: DevPack.${{env.VERSION}}.${{steps.semvers.outputs.patch}}.nupkg
+        asset_path: ./nuget-packages/DevPack.${{steps.semvers.outputs.patch}}.nupkg
+        asset_name: DevPack.${{steps.semvers.outputs.patch}}.nupkg
         asset_content_type: application/zip
     
     - name: Publish Nuget Package
