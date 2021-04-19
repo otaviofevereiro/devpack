@@ -80,6 +80,3 @@ jobs:
     - name: Publish Nuget Package
       run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
-    - name: Publish Github Nuget Package
-      run: dotnet nuget push nuget-packages/*.nupkg --source "github"
-
