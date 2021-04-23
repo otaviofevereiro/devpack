@@ -9,25 +9,25 @@ namespace System
 {
     public static class ValueFactoryExtensions
     {
-        public static IServiceCollection AddValueFactory<TValue>(this IServiceCollection services,
-                                                                 Func<string, TValue> factory)
+        public static IServiceCollection AddValueFactory<TResult>(this IServiceCollection services,
+                                                                 Func<string, TResult> factory)
         {
-            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(factory));
+            services.AddSingleton<IValueFactory<TResult>, ValueFactory<TResult>>(sp => new ValueFactory<TResult>(factory));
 
             return services;
         }
 
-        public static IServiceCollection AddValueFactory<TValue>(this IServiceCollection services)
+        public static IServiceCollection AddValueFactory<TResult>(this IServiceCollection services)
         {
-            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(key => sp.GetRequiredService<TValue>()));
+            services.AddSingleton<IValueFactory<TResult>, ValueFactory<TResult>>(sp => new ValueFactory<TResult>(key => sp.GetRequiredService<TResult>()));
 
             return services;
         }
 
-        public static IServiceCollection AddValueFactoryWithServiceProvider<TValue>(this IServiceCollection services,
-                                                                 Func<IServiceProvider, TValue> implementationFactory)
+        public static IServiceCollection AddValueFactoryWithServiceProvider<TResult>(this IServiceCollection services,
+                                                                 Func<IServiceProvider, TResult> implementationFactory)
         {
-            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(key => implementationFactory(sp)));
+            services.AddSingleton<IValueFactory<TResult>, ValueFactory<TResult>>(sp => new ValueFactory<TResult>(key => implementationFactory(sp)));
 
             return services;
         }
