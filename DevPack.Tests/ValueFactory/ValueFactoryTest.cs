@@ -12,15 +12,15 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s => 
-                s.AddValueFactory(key => new Incrementer()));
+                s.AddValueFactory(key => new Incrementer("A")));
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
-            Parallel.For(0, 100, value => factory.GetOrCreate("A").Add());
+            Parallel.For(0, 10, value => factory.GetOrCreate("A").Add());
 
             //Assert
             var incrementer = factory.GetOrCreate("A");
-            Assert.Equal(100, incrementer.Count);
+            Assert.Equal(10, incrementer.Count);
             Assert.Equal("A", incrementer.Name);
         }
 
@@ -33,16 +33,16 @@ namespace DevPack.Tests.ValueFactory
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
-            Parallel.For(0, 30, value => factory.GetOrCreate("A").Add());
-            Parallel.For(0, 20, value => factory.GetOrCreate("B").Add());
+            Parallel.For(0, 5, value => factory.GetOrCreate("A").Add());
+            Parallel.For(0, 4, value => factory.GetOrCreate("B").Add());
 
             //Assert
             var incrementerA = factory.GetOrCreate("A");
-            Assert.Equal(30, incrementerA.Count);
+            Assert.Equal(5, incrementerA.Count);
             Assert.Equal("A", incrementerA.Name);
 
             var incrementerB = factory.GetOrCreate("B");
-            Assert.Equal(20, incrementerB.Count);
+            Assert.Equal(4, incrementerB.Count);
             Assert.Equal("B", incrementerB.Name);
         }
 
@@ -56,11 +56,11 @@ namespace DevPack.Tests.ValueFactory
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
-            Parallel.For(0, 100, value => factory["A"].Add());
+            Parallel.For(0, 10, value => factory["A"].Add());
 
             //Assert
             var incrementer = factory.GetOrCreate("A");
-            Assert.Equal(100, incrementer.Count);
+            Assert.Equal(10, incrementer.Count);
             Assert.Equal("A", incrementer.Name);
         }
     }
