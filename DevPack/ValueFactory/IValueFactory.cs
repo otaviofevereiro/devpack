@@ -4,6 +4,6 @@
     {
         T this[string key] { get; }
 
-        T EnsureValue(string key);
+        T GetOrCreate(string key);
     }
 }

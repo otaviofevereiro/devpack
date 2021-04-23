@@ -16,7 +16,7 @@ namespace DevPack.Tests.Configuration
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                 s.AddValueFactory(() => new Incrementer()));
+                 s.AddValueFactory(key => new Incrementer(key)));
 
             //Act
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
@@ -41,11 +41,11 @@ namespace DevPack.Tests.Configuration
         }
 
         [Fact]
-        public void AddValueFactory_AddByServiceProvider_GetCorretService()
+        public void AddValueFactoryWithServiceProvider_AddByServiceProvider_GetCorretService()
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactory(sp => new Incrementer()));
+                s.AddValueFactoryWithServiceProvider(sp => new Incrementer()));
 
             //Act
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();

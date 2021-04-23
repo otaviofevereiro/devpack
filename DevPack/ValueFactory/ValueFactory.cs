@@ -9,19 +9,19 @@ namespace System
     internal sealed class ValueFactory<TValue> : IValueFactory<TValue>
     {
         public static readonly Type _type = typeof(TValue);
-        private readonly ConcurrentDictionary<string, Lazy<TValue>> _clients = new();
-        private readonly Func<TValue> _create;
+        private readonly ConcurrentDictionary<string, Lazy<TValue>> _values = new();
+        private readonly Func<string, TValue> _create;
 
-        public ValueFactory(Func<TValue> factory)
+        public ValueFactory(Func<string, TValue> factory)
         {
             _create = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
-        public TValue this[string key] => EnsureValue(key);
+        public TValue this[string key] => GetOrCreate(key);
 
-        public TValue EnsureValue(string key)
+        public TValue GetOrCreate(string key)
         {
-            return _clients.GetOrAdd(key, new Lazy<TValue>(_create)).Value;
+            return _values.GetOrAdd(key, new Lazy<TValue>(_create(key))).Value;
         }
     }
 }

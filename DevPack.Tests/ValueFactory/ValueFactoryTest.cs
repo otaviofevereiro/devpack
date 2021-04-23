@@ -12,15 +12,16 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s => 
-                s.AddValueFactory(() => new Incrementer()));
+                s.AddValueFactory(key => new Incrementer()));
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
-            Parallel.For(0, 100, value => factory.EnsureValue("A").Add());
+            Parallel.For(0, 100, value => factory.GetOrCreate("A").Add());
 
             //Assert
-            var incrementer = factory.EnsureValue("A");
+            var incrementer = factory.GetOrCreate("A");
             Assert.Equal(100, incrementer.Count);
+            Assert.Equal("A", incrementer.Name);
         }
 
         [Fact]
@@ -28,19 +29,21 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactory(() => new Incrementer()));
+                s.AddValueFactory(key => new Incrementer(key)));
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
-            Parallel.For(0, 30, value => factory.EnsureValue("A").Add());
-            Parallel.For(0, 20, value => factory.EnsureValue("B").Add());
+            Parallel.For(0, 30, value => factory.GetOrCreate("A").Add());
+            Parallel.For(0, 20, value => factory.GetOrCreate("B").Add());
 
             //Assert
-            var incrementerA = factory.EnsureValue("A");
+            var incrementerA = factory.GetOrCreate("A");
             Assert.Equal(30, incrementerA.Count);
+            Assert.Equal("A", incrementerA.Name);
 
-            var incrementerB = factory.EnsureValue("B");
+            var incrementerB = factory.GetOrCreate("B");
             Assert.Equal(20, incrementerB.Count);
+            Assert.Equal("B", incrementerB.Name);
         }
 
 
@@ -49,15 +52,16 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactory(() => new Incrementer()));
+                s.AddValueFactory(key => new Incrementer(key)));
             var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
 
             //Act
             Parallel.For(0, 100, value => factory["A"].Add());
 
             //Assert
-            var incrementer = factory.EnsureValue("A");
+            var incrementer = factory.GetOrCreate("A");
             Assert.Equal(100, incrementer.Count);
+            Assert.Equal("A", incrementer.Name);
         }
     }
 }

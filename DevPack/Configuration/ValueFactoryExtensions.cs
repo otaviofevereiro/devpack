@@ -10,7 +10,7 @@ namespace System
     public static class ValueFactoryExtensions
     {
         public static IServiceCollection AddValueFactory<TValue>(this IServiceCollection services,
-                                                                 Func<TValue> factory)
+                                                                 Func<string, TValue> factory)
         {
             services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(factory));
 
@@ -19,15 +19,15 @@ namespace System
 
         public static IServiceCollection AddValueFactory<TValue>(this IServiceCollection services)
         {
-            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(() => sp.GetRequiredService<TValue>()));
+            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(key => sp.GetRequiredService<TValue>()));
 
             return services;
         }
 
-        public static IServiceCollection AddValueFactory<TValue>(this IServiceCollection services,
+        public static IServiceCollection AddValueFactoryWithServiceProvider<TValue>(this IServiceCollection services,
                                                                  Func<IServiceProvider, TValue> implementationFactory)
         {
-            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(() => implementationFactory(sp)));
+            services.AddSingleton<IValueFactory<TValue>, ValueFactory<TValue>>(sp => new ValueFactory<TValue>(key => implementationFactory(sp)));
 
             return services;
         }
