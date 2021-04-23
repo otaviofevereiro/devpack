@@ -7,7 +7,6 @@ namespace System
 {
     public static class StringExtensions
     {
-
         public static string RemoveSpecialCharacteres(this string value)
         {
             return new string(RemoveSpecialCharacteresInternal(value).ToArray());
