@@ -26,9 +26,7 @@ jobs:
       run: dotnet restore
     
     - name: Test
-      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - name: Publish Codecov
-      uses: codecov/codecov-action@v1
+      run: dotnet test --no-restore --verbosity normal
 
     - name: 'Get Previous tag'
       id: previoustag
