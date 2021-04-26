@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AC365970
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Tests", "DevPack.Tests\DevPack.Tests.csproj", "{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.EventBus.Benchmarks", "DevPack.EventBus.Benchmarks\DevPack.EventBus.Benchmarks.csproj", "{C6387E5C-8F91-4F61-8EDF-30332282E462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6387E5C-8F91-4F61-8EDF-30332282E462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6387E5C-8F91-4F61-8EDF-30332282E462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6387E5C-8F91-4F61-8EDF-30332282E462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6387E5C-8F91-4F61-8EDF-30332282E462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

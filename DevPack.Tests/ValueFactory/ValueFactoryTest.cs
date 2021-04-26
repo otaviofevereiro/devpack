@@ -45,23 +45,5 @@ namespace DevPack.Tests.ValueFactory
             Assert.Equal(4, incrementerB.Count);
             Assert.Equal("B", incrementerB.Name);
         }
-
-
-        [Fact]
-        public void ArrayKey_MultiplesThreads_ThreadSafeExecution()
-        {
-            //Arrange
-            var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactory(key => new Incrementer(key)));
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
-
-            //Act
-            Parallel.For(0, 10, value => factory["A"].Add());
-
-            //Assert
-            var incrementer = factory.GetOrCreate("A");
-            Assert.Equal(10, incrementer.Count);
-            Assert.Equal("A", incrementer.Name);
-        }
     }
 }
