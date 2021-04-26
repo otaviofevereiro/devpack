@@ -37,18 +37,12 @@ namespace System
 
         public static bool operator ==(Cpf left, string right)
         {
-            if (left.Value is null && right is null)
-                return true;
-
-            if (left.Value is null && right is not null)
-                return false;
-
-            return left.Value.Equals(RemoveFormat(right));
+            return IsEqual(left, right);
         }
 
         public static bool operator ==(string left, Cpf right)
         {
-            return right.Value.Equals(RemoveFormat(left));
+            return IsEqual(right, left);
         }
 
         public static bool operator ==(Cpf left, Cpf right)
@@ -91,6 +85,17 @@ namespace System
         public override string ToString() => Value;
 
         public string ToStringFormated() => string.Format(@"{0:###\.###\.###\-##}", long.Parse(Value));
+
+        private static bool IsEqual(Cpf value1, string value2)
+        {
+            if (value1.Value is null && value2 is null)
+                return true;
+
+            if (value1.Value is null && value2 is not null)
+                return false;
+
+            return value1.Value.Equals(RemoveFormat(value2));
+        }
 
         private static bool IsValid(string value)
         {
@@ -161,7 +166,7 @@ namespace System
 
             return new string(_removeFormat(value).ToArray());
 
-            IEnumerable<char> _removeFormat(string value)
+            static IEnumerable<char> _removeFormat(string value)
             {
                 foreach (var c in value)
                 {
