@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace DevPack.Extensions.Tests
+namespace DevPack.Tests.Extensions
 {
     public class EnumerableExtensionsTest
     {

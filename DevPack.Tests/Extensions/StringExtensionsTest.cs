@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace DevPack.Extensions.Tests
+namespace DevPack.Tests.Extensions
 {
     public class StringExtensionsTest
     {
