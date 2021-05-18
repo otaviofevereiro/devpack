@@ -47,7 +47,7 @@ namespace System
 
         public static bool operator ==(Cpf left, Cpf right)
         {
-            return left.Value.Equals(right.Value);
+            return left.Equals(right);
         }
 
         public static bool TryParse(string cpfValue, out Cpf cpf)
@@ -68,17 +68,20 @@ namespace System
 
         public override bool Equals(object obj)
         {
-            if (obj is null)
+            if (obj is null || Value is null)
                 return false;
 
-            if (obj is Cpf cpf)
-                return Value.Equals(cpf.Value);
+            if (obj is Cpf id)
+                return Value.Equals(id.Value);
 
             return Value.Equals(RemoveFormat(obj.ToString()));
         }
 
         public override int GetHashCode()
         {
+            if (Value is null)
+                return 0;
+
             return Value.GetHashCode();
         }
 
