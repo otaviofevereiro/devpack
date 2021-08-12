@@ -4,7 +4,6 @@ namespace System
 {
     internal sealed class ValueFactory<TResult> : IValueFactory<TResult>
     {
-        public static readonly Type _resultType = typeof(TResult);
         private readonly ConcurrentDictionary<string, Lazy<TResult>> _values = new();
         private readonly Func<string, TResult> _create;
 
