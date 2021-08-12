@@ -19,30 +19,11 @@ namespace System
         private string Value { get; }
 
         public static implicit operator Cpf(string value) => new(value);
+        public static implicit operator string(Cpf cpf) => cpf.Value;
 
         public static bool operator !=(Cpf left, Cpf right)
         {
             return !(left == right);
-        }
-
-        public static bool operator !=(string left, Cpf right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator !=(Cpf left, string right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator ==(Cpf left, string right)
-        {
-            return IsEqual(left, right);
-        }
-
-        public static bool operator ==(string left, Cpf right)
-        {
-            return IsEqual(right, left);
         }
 
         public static bool operator ==(Cpf left, Cpf right)
@@ -68,11 +49,13 @@ namespace System
 
         public override bool Equals(object obj)
         {
-            if (obj is null || Value is null)
+            if (obj is null)
                 return false;
+            else if (Value is null)
+                return true;
 
-            if (obj is Cpf id)
-                return Value.Equals(id.Value);
+            if (obj is Cpf cpf)
+                return Value.Equals(cpf.Value);
 
             return Value.Equals(RemoveFormat(obj.ToString()));
         }
@@ -88,17 +71,6 @@ namespace System
         public override string ToString() => Value;
 
         public string ToStringFormated() => string.Format(@"{0:###\.###\.###\-##}", long.Parse(Value));
-
-        private static bool IsEqual(Cpf value1, string value2)
-        {
-            if (value1.Value is null && value2 is null)
-                return true;
-
-            if (value1.Value is null && value2 is not null)
-                return false;
-
-            return value1.Value.Equals(RemoveFormat(value2));
-        }
 
         private static bool IsValid(string value)
         {
