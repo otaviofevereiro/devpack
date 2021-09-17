@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace DevPack.Tests.ValueFactory
+namespace DevPack.Factory.Tests
 {
     public class Incrementer
     {
