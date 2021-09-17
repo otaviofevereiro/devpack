@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using DevPack.Tests;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DevPack.Tests.ValueFactory
+namespace DevPack.Factory.Tests
 {
     public class ValueFactoryTest
     {
@@ -12,8 +12,8 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s => 
-                s.AddValueFactory(key => new Incrementer("A")));
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
+                s.AddValueFactory<string, Incrementer>(key => new Incrementer("A")));
+            var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 
             //Act
             Parallel.For(0, 10, value => factory.GetOrCreate("A").Add());
@@ -29,8 +29,8 @@ namespace DevPack.Tests.ValueFactory
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactory(key => new Incrementer(key)));
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
+                s.AddValueFactory<string, Incrementer>(key => new Incrementer(key)));
+            var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 
             //Act
             Parallel.For(0, 5, value => factory.GetOrCreate("A").Add());
