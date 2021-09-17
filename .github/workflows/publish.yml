@@ -43,7 +43,7 @@ jobs:
       run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Pack Nuget
-      run: dotnet pack DevPack/DevPack.csproj --output nuget-packages --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
+      run: dotnet pack --output nuget-packages --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Zip Folder
       run: cd release ; zip -r DevPack.${{steps.semvers.outputs.patch}}.zip . ; cd -
