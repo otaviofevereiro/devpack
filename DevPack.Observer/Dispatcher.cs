@@ -1,12 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevPack.Observer.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DevPack
+namespace DevPack.Observer
 {
-    internal sealed class Dispatcher<TEvent> : IDispatcher
+    public sealed class Dispatcher<TEvent> : IDispatcher
         where TEvent : IEvent
     {
         private readonly IServiceProvider _serviceProvider;

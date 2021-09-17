@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DevPack.Observer.Abstractions;
+using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace DevPack
+namespace DevPack.Observer
 {
-    internal sealed class EventBus : IEventBus
+    public sealed class Notifier : INotifier
     {
         private readonly Type _publisherType = typeof(Dispatcher<>);
         private readonly ConcurrentDictionary<string, Lazy<IDispatcher>> _dispatchers = new();
         private readonly IServiceProvider _serviceProvider;
 
-        public EventBus(IServiceProvider serviceProvider)
+        public Notifier(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }

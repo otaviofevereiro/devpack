@@ -1,5 +1,5 @@
-﻿using System;
-using DevPack;
+﻿using DevPack;
+using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

@@ -1,13 +1,12 @@
 ﻿using BenchmarkDotNet.Running;
-using System;
 
-namespace DevPack.EventBus.Benchmarks
+namespace DevPack.Observer.Tests.Benchmarks
 {
     class Program
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<EventBusBenchmark>();
+            BenchmarkRunner.Run<NotifierBenchmark>();
         }
     }
 }

@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevPack.Abstractions\DevPack.Abstractions.csproj" />
-    <ProjectReference Include="..\DevPack\DevPack.csproj" />
+    <ProjectReference Include="..\DevPack.Observer.Abstractions\DevPack.Observer.Abstractions.csproj" />
+    <ProjectReference Include="..\DevPack.Observer\DevPack.Observer.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace DevPack.EventBus.Benchmarks
+namespace DevPack.Observer.Tests.Benchmarks
 {
     public static class ServiceProviderHelper
     {

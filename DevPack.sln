@@ -5,23 +5,35 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack", "DevPack\DevPack.csproj", "{F5BBCDB0-F6F9-4E8F-89D1-16E272C1F21D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AC365970-5AC6-435D-883F-20B01718CBEF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Tests", "DevPack.Tests\DevPack.Tests.csproj", "{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.EventBus.Benchmarks", "DevPack.EventBus.Benchmarks\DevPack.EventBus.Benchmarks.csproj", "{C6387E5C-8F91-4F61-8EDF-30332282E462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Observer.Tests.Benchmarks", "DevPack.EventBus.Benchmarks\DevPack.Observer.Tests.Benchmarks.csproj", "{C6387E5C-8F91-4F61-8EDF-30332282E462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Extensions", "DevPack.Extensions\DevPack.Extensions.csproj", "{D0EF31A5-B016-41D6-8D23-BF1767FCF01C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Extensions", "DevPack.Extensions\DevPack.Extensions.csproj", "{D0EF31A5-B016-41D6-8D23-BF1767FCF01C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Factory", "Factory", "{7F436C05-A0CA-4BD7-9BD1-0CC7BC6CB037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Factory", "DevPack.Factory\DevPack.Factory.csproj", "{8906F783-C9EB-4063-84B5-94DE957B1D98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Factory", "DevPack.Factory\DevPack.Factory.csproj", "{8906F783-C9EB-4063-84B5-94DE957B1D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Factory.Abstractions", "DevPack.Factory.Abstractions\DevPack.Factory.Abstractions.csproj", "{CEF3104E-AE58-4E1D-B43A-A8CADFC132CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Factory.Abstractions", "DevPack.Factory.Abstractions\DevPack.Factory.Abstractions.csproj", "{CEF3104E-AE58-4E1D-B43A-A8CADFC132CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Factory.Extensions", "DevPack.Factory.Extensions\DevPack.Factory.Extensions.csproj", "{2F6ED4DE-07C1-4E4F-BA0D-219CBB2EEE5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Factory.Extensions", "DevPack.Factory.Extensions\DevPack.Factory.Extensions.csproj", "{2F6ED4DE-07C1-4E4F-BA0D-219CBB2EEE5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Factory.Tests", "DevPack.Factory.Tests\DevPack.Factory.Tests.csproj", "{7F1C7BF1-7E48-4196-818C-06F8F227AA43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Factory.Tests", "DevPack.Factory.Tests\DevPack.Factory.Tests.csproj", "{7F1C7BF1-7E48-4196-818C-06F8F227AA43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commom", "Commom", "{0FBB114C-5448-4DB8-A561-5B285160B29A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Abstractions", "DevPack.Abstractions\DevPack.Abstractions.csproj", "{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Observer", "Observer", "{369CBA17-6385-442D-8AEC-9C3440A37A52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Observer", "DevPack.Observer\DevPack.Observer.csproj", "{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Observer.Abstractions", "DevPack.Observer.Abstractions\DevPack.Observer.Abstractions.csproj", "{133F75D3-1387-4B24-9277-6C281BCC4F20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevPack.Observer.Extensions", "DevPack.Observer.Extensions\DevPack.Observer.Extensions.csproj", "{B6654BC3-FCE8-4611-A9CE-83DE24CAA261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevPack.Observer.Tests", "DevPack.Observer.Tests\DevPack.Observer.Tests.csproj", "{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,16 +73,44 @@ Global
 		{7F1C7BF1-7E48-4196-818C-06F8F227AA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F1C7BF1-7E48-4196-818C-06F8F227AA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F1C7BF1-7E48-4196-818C-06F8F227AA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133F75D3-1387-4B24-9277-6C281BCC4F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133F75D3-1387-4B24-9277-6C281BCC4F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133F75D3-1387-4B24-9277-6C281BCC4F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133F75D3-1387-4B24-9277-6C281BCC4F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6654BC3-FCE8-4611-A9CE-83DE24CAA261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6654BC3-FCE8-4611-A9CE-83DE24CAA261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6654BC3-FCE8-4611-A9CE-83DE24CAA261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6654BC3-FCE8-4611-A9CE-83DE24CAA261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F} = {AC365970-5AC6-435D-883F-20B01718CBEF}
+		{F5BBCDB0-F6F9-4E8F-89D1-16E272C1F21D} = {0FBB114C-5448-4DB8-A561-5B285160B29A}
+		{C93FAFB3-8CE8-4EC1-9CEB-5141D619F94F} = {0FBB114C-5448-4DB8-A561-5B285160B29A}
+		{C6387E5C-8F91-4F61-8EDF-30332282E462} = {369CBA17-6385-442D-8AEC-9C3440A37A52}
+		{D0EF31A5-B016-41D6-8D23-BF1767FCF01C} = {0FBB114C-5448-4DB8-A561-5B285160B29A}
 		{8906F783-C9EB-4063-84B5-94DE957B1D98} = {7F436C05-A0CA-4BD7-9BD1-0CC7BC6CB037}
 		{CEF3104E-AE58-4E1D-B43A-A8CADFC132CE} = {7F436C05-A0CA-4BD7-9BD1-0CC7BC6CB037}
 		{2F6ED4DE-07C1-4E4F-BA0D-219CBB2EEE5D} = {7F436C05-A0CA-4BD7-9BD1-0CC7BC6CB037}
 		{7F1C7BF1-7E48-4196-818C-06F8F227AA43} = {7F436C05-A0CA-4BD7-9BD1-0CC7BC6CB037}
+		{0BD14BC4-624B-4B91-91D5-6A916B5AB8C4} = {0FBB114C-5448-4DB8-A561-5B285160B29A}
+		{460AFFC1-CCB9-4D0C-A49F-F339BA1FE755} = {369CBA17-6385-442D-8AEC-9C3440A37A52}
+		{133F75D3-1387-4B24-9277-6C281BCC4F20} = {369CBA17-6385-442D-8AEC-9C3440A37A52}
+		{B6654BC3-FCE8-4611-A9CE-83DE24CAA261} = {369CBA17-6385-442D-8AEC-9C3440A37A52}
+		{5B4F0C9B-3BB2-4D7F-84A9-B8C663D31975} = {369CBA17-6385-442D-8AEC-9C3440A37A52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0C2B60C-79D1-4F41-AA6F-899DEAAE78A8}

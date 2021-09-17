@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DevPack
+namespace DevPack.Observer.Abstractions
 {
-    internal interface IDispatcher
+    public interface IDispatcher
     {
         Task SendAsync(object @event);
     }
