@@ -24,9 +24,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
+
+    - name: Install dependencies
+      run: dotnet build --configuration Release 
     
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --no-build --verbosity normal
 
     - name: 'Get Previous tag'
       id: previoustag
@@ -40,10 +43,10 @@ jobs:
         version: ${{ steps.previoustag.outputs.tag }}
     
     - name: Publish
-      run: dotnet publish ".\DevPack\DevPack.csproj" --output "release" --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
+      run: dotnet publish --output "release" --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Pack Nuget
-      run: dotnet pack --output nuget-packages --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
+      run: dotnet pack --output "release/nuget-packages" --configuration Release --no-restore -p:version=${{steps.semvers.outputs.patch}}
 
     - name: Zip Folder
       run: cd release ; zip -r DevPack.${{steps.semvers.outputs.patch}}.zip . ; cd -
@@ -68,17 +71,7 @@ jobs:
         asset_path: ./release/DevPack.${{steps.semvers.outputs.patch}}.zip
         asset_name: DevPack.${{steps.semvers.outputs.patch}}.zip
         asset_content_type: application/zip
-
-    - name: Update Release with Nuget Packages
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./nuget-packages/DevPack.${{steps.semvers.outputs.patch}}.nupkg
-        asset_name: DevPack.${{steps.semvers.outputs.patch}}.nupkg
-        asset_content_type: application/zip
     
     - name: Publish Nuget Package
-      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "release/nuget-packages/*.nupkg" --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
