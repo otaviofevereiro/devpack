@@ -1,5 +1,4 @@
-﻿using DevPack;
-using DevPack.Observer;
+﻿using DevPack.Observer;
 using DevPack.Observer.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 

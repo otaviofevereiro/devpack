@@ -1,9 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using DevPack.Observer.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
-using DevPack.Observer.Abstractions;
 
 namespace DevPack.Observer.Tests.Benchmarks
 {

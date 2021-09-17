@@ -11,7 +11,7 @@ namespace DevPack.Factory.Tests
         public void EnsureValue_MultiplesThreads_ThreadSafeExecution()
         {
             //Arrange
-            var serviceProvider = ServiceProviderHelper.Get(s => 
+            var serviceProvider = ServiceProviderHelper.Get(s =>
                 s.AddValueFactory<string, Incrementer>(key => new Incrementer("A")));
             var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 

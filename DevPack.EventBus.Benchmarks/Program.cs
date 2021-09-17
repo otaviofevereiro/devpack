@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using System;
 
 namespace DevPack.Observer.Tests.Benchmarks
 {
