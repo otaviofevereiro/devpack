@@ -3,7 +3,7 @@
     /// <summary>
     /// Provide Date and Time configuring the offset of time zone
     /// </summary>
-    internal sealed class DateTimeProvider : IDateTimeProvider
+    public sealed class DateTimeProvider : IDateTimeProvider
     {
         private readonly TimeSpan _offset;
 

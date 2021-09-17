@@ -1,26 +1,27 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevPack.Observer.Abstractions;
+using DevPack.Tests;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DevPack.Tests.EventBus
+namespace DevPack.Observer.Tests
 {
-    public class EventBusTest
+    public class NotifierTest
     {
 
         [Fact]
         public async Task Notify_SendEventMessageWithSingleHandler_ExpectedReceiveEventMessage()
         {
             //Arrange
-            var sp = ServiceProviderHelper.Get(services => services.AddEventBus()
+            var sp = ServiceProviderHelper.Get(services => services.AddNotifier()
                                                                    .AddEventHandler<CustomEvent, EventHandler>());
-            var eventBus = sp.GetRequiredService<IEventBus>();
+            var notifier = sp.GetRequiredService<INotifier>();
 
             var @event = new CustomEvent("Teste de envio de evento com um handler.");
 
             //Act
-            await eventBus.NotifyAsync(@event);
+            await notifier.NotifyAsync(@event);
 
             //Assert
             Assert.NotNull(EventHandler.EventReceived);
@@ -33,14 +34,14 @@ namespace DevPack.Tests.EventBus
         {
             //Arrange
             var sp = ServiceProviderHelper.Get(services =>
-                                               services.AddEventBus()
+                                               services.AddNotifier()
                                                        .AddEventHandler<CustomEvent, MultipleEventHandler>()
                                                        .AddEventHandler<CustomEvent, MultipleEventHandler2>());
-            var eventBus = sp.GetRequiredService<IEventBus>();
+            var notifier = sp.GetRequiredService<INotifier>();
             var @event = new CustomEvent("Teste de envio de evento com multiplos handlers.");
 
             //Act
-            await eventBus.NotifyAsync(@event);
+            await notifier.NotifyAsync(@event);
 
             //Assert
             Assert.NotNull(MultipleEventHandler.EventReceived);

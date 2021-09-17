@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DevPack
+namespace DevPack.Observer.Abstractions
 {
-    public interface IEventBus
+    public interface INotifier
     {
         Task NotifyAsync(object @event);
     }

@@ -3,25 +3,26 @@ using BenchmarkDotNet.Jobs;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using DevPack.Observer.Abstractions;
 
-namespace DevPack.EventBus.Benchmarks
+namespace DevPack.Observer.Tests.Benchmarks
 {
     [SimpleJob(runtimeMoniker: RuntimeMoniker.NetCoreApp50,
                invocationCount: 1000000)]
     [MemoryDiagnoser]
     [RPlotExporter]
-    public class EventBusBenchmark
+    public class NotifierBenchmark
     {
-        private IEventBus _eventBus;
+        private INotifier _notifier;
 
         [GlobalSetup]
         public void Setup()
         {
             //Arrange
             var sp = ServiceProviderHelper.Get(services =>
-                                               services.AddEventBus()
+                                               services.AddNotifier()
                                                        .AddEventHandler<CustomEvent, EventHandler>());
-            _eventBus = sp.GetRequiredService<IEventBus>();
+            _notifier = sp.GetRequiredService<INotifier>();
         }
 
         [Benchmark]
@@ -29,7 +30,7 @@ namespace DevPack.EventBus.Benchmarks
         {
             var @event = new CustomEvent("Custom Event Value");
 
-            await _eventBus.NotifyAsync(@event);
+            await _notifier.NotifyAsync(@event);
         }
 
         class EventHandler : IEventHandler<CustomEvent>

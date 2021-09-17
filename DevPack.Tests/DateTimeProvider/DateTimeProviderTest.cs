@@ -56,9 +56,9 @@ namespace DevPack.Tests.DateTimeProvider
             Assert.Equal(nowResult.ToString("dd/MM/yyyy hh:mm"), now.AddHours(10).ToString("dd/MM/yyyy hh:mm"));
         }
 
-        private IServiceProvider GetServiceProvider(TimeSpan offset = default)
+        private static IServiceProvider GetServiceProvider(TimeSpan offset = default)
         {
-            var serviceCollection = new ServiceCollection();
+            ServiceCollection serviceCollection = new();
             serviceCollection.AddDevPack(conf => conf.WithDateTimeOffSet(offset));
 
             return serviceCollection.BuildServiceProvider();
