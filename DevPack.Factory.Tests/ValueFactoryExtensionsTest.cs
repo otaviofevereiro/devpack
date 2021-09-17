@@ -1,13 +1,8 @@
-﻿using DevPack.Tests.ValueFactory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using DevPack.Tests;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
-namespace DevPack.Tests.Configuration
+namespace DevPack.Factory.Tests
 {
     public class ValueFactoryExtensionsTest
     {
@@ -16,10 +11,10 @@ namespace DevPack.Tests.Configuration
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                 s.AddValueFactory(key => new Incrementer(key)));
+                 s.AddValueFactory<string, Incrementer>(key => new Incrementer(key)));
 
             //Act
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
+            var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 
             //Assert
             Assert.NotNull(factory);
@@ -31,10 +26,10 @@ namespace DevPack.Tests.Configuration
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
                 s.AddTransient<Incrementer>()
-                 .AddValueFactory<Incrementer>());
+                 .AddValueFactory<string, Incrementer>());
 
             //Act
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
+            var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 
             //Assert
             Assert.NotNull(factory);
@@ -45,10 +40,10 @@ namespace DevPack.Tests.Configuration
         {
             //Arrange
             var serviceProvider = ServiceProviderHelper.Get(s =>
-                s.AddValueFactoryWithServiceProvider(sp => new Incrementer()));
+                s.AddValueFactory<string, Incrementer>(sp => new Incrementer()));
 
             //Act
-            var factory = serviceProvider.GetService<IValueFactory<Incrementer>>();
+            var factory = serviceProvider.GetService<IValueFactory<string, Incrementer>>();
 
             //Assert
             Assert.NotNull(factory);
