@@ -50,21 +50,16 @@ namespace System
         public override bool Equals(object obj)
         {
             if (obj is null)
-                return false;
-            else if (Value is null)
-                return true;
+                return Value is null;
 
             if (obj is Cpf cpf)
-                return Value.Equals(cpf.Value);
+                return Value == cpf.Value;
 
             return Value.Equals(RemoveFormat(obj.ToString()));
         }
 
         public override int GetHashCode()
         {
-            if (Value is null)
-                return 0;
-
             return Value.GetHashCode();
         }
 

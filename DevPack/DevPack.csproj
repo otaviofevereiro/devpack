@@ -16,7 +16,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Objects\" />
+	  <Compile Remove="Objects\**" />
+	  <EmbeddedResource Remove="Objects\**" />
+	  <None Remove="Objects\**" />
 	</ItemGroup>
 
 	<ItemGroup>
