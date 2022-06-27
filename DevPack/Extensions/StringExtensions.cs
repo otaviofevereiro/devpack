@@ -7,6 +7,18 @@ namespace System
 {
     public static class StringExtensions
     {
+        public static string ToNumeric(this string value)
+        {
+            return new string(ToNumericInternal(value).ToArray());
+        }
+
+        private static IEnumerable<char> ToNumericInternal(string value)
+        {
+            return value.Normalize(NormalizationForm.FormD)
+                        .Where(c => char.IsDigit(c));
+        }
+
+
         public static string RemoveSpecialCharacteres(this string value)
         {
             return new string(RemoveSpecialCharacteresInternal(value).ToArray());
