@@ -6,7 +6,8 @@ namespace DevPack.Tests.Extensions
     public class StringExtensionsTest
     {
         const string _allSpecialChars = @"áàâãªÁÀÂÃéèêÉÈÊóòôõºÓÒÔÕúùûÚÙÛçÇíïìîÍÌÎÏ%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
-        const string _withuotSpecialChars = @"aaaaªAAAAeeeEEEooooºOOOOuuuUUUcCiiiiIIII%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+        const string _withoutAccents = @"aaaaªAAAAeeeEEEooooºOOOOuuuUUUcCiiiiIIII%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+        const string _withoutSpecial = "aaaaAAAAeeeEEEooooOOOOuuuUUUcCiiiiIIII abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
         const string _onlyNumber = "0123456789";
 
         [Fact]
@@ -14,7 +15,7 @@ namespace DevPack.Tests.Extensions
         {
             string result = _allSpecialChars.RemoveSpecialCharacteres();
 
-            Assert.Equal(_withuotSpecialChars, result);
+            Assert.Equal(_withoutSpecial, result);
         }
 
         [Fact]
@@ -22,7 +23,7 @@ namespace DevPack.Tests.Extensions
         {
             string result = _allSpecialChars.RemoveAccents();
 
-            Assert.Equal(_withuotSpecialChars, result);
+            Assert.Equal(_withoutAccents, result);
         }
 
 
