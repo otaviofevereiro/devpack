@@ -5,26 +5,34 @@ namespace DevPack.Tests.Extensions
 {
     public class StringExtensionsTest
     {
+        const string _allSpecialChars = @"áàâãªÁÀÂÃéèêÉÈÊóòôõºÓÒÔÕúùûÚÙÛçÇíïìîÍÌÎÏ%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+        const string _withoutAccents = @"aaaaªAAAAeeeEEEooooºOOOOuuuUUUcCiiiiIIII%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+        const string _withoutSpecial = "aaaaAAAAeeeEEEooooOOOOuuuUUUcCiiiiIIII abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+        const string _onlyNumber = "0123456789";
+
         [Fact]
         public void RemoveSpecialCharacteres_StringWithSpecialCharacteres_MustReturnStringWithoutSpecialCharacteres()
         {
-            string text = @"áàâãªÁÀÂÃéèêÉÈÊóòôõºÓÒÔÕúùûÚÙÛçÇíïìîÍÌÎÏ%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
-            string expectedResult = "aaaaAAAAeeeEEEooooOOOOuuuUUUcCiiiiIIII abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+            string result = _allSpecialChars.RemoveSpecialCharacteres();
 
-            string result = text.RemoveSpecialCharacteres();
-
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(_withoutSpecial, result);
         }
 
         [Fact]
         public void RemoveAccents_StringWithAccents_MustReturnStringWithoutAccents()
         {
-            string text = @"áàâãªÁÀÂÃéèêÉÈÊóòôõºÓÒÔÕúùûÚÙÛçÇíïìîÍÌÎÏ%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
-            string expectedResult = @"aaaaªAAAAeeeEEEooooºOOOOuuuUUUcCiiiiIIII%@&$#*!?<>+=^~\/|()[]{}-',.§¬ abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789";
+            string result = _allSpecialChars.RemoveAccents();
 
-            string result = text.RemoveAccents();
+            Assert.Equal(_withoutAccents, result);
+        }
 
-            Assert.Equal(expectedResult, result);
+
+        [Fact]
+        public void ToNumeric_StringWithAccents_MustReturnOnlyNumbers()
+        {
+            string result = _allSpecialChars.ToNumeric();
+
+            Assert.Equal(_onlyNumber, result);
         }
     }
 }
