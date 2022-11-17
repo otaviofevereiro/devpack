@@ -15,7 +15,7 @@ namespace DevPack.Factory
 
         public TValue GetOrCreate(TKey key)
         {
-            return _values.GetOrAdd(key, new Lazy<TValue>(_create(key))).Value;
+            return _values.GetOrAdd(key, new Lazy<TValue>(() => _create(key))).Value;
         }
     }
 }
